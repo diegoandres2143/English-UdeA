@@ -61,16 +61,16 @@
         tag: "deportes", 
         place: "Coliseum", 
         info: `
-          The UdeA Coliseum is ideal for practicing and watching sports. It has spaces for soccer, basketball, volleyball, taekwondo, athletics, tennis, ping-pong, swimming, diving, and many more!
+          The UdeA Coliseum is a dynamic hub for physical activity and team spirit. It's more than just a sports facility—it's where students build community, resilience, and healthy habits. Whether you're into competitive sports like basketball, volleyball, or soccer, or prefer individual activities like swimming, athletics, or taekwondo, the coliseum has something for everyone. You can also enjoy tennis, ping pong, and the university's own gymnasium, which is fully equipped for your fitness needs. The facilities are modern, well-maintained, and designed to foster a sense of camaraderie among athletes and spectators alike. If you're just starting out or an experienced athlete, there’s always room to grow and have fun.
           <div class="image-gallery">
             <img src="img/Tenis_1.jpg" alt="Coliseum - Main court">
             <img src="img/Tenis_2.jpg" alt="Coliseum - Swimming pool">
             <img src="img/Piscina_1.jpg" alt="Coliseum - Athletics track">
             <img src="img/Piscina_2.jpg" alt="Coliseum - Volleyball">
-            <img src="img/Coliseo_1.jpg" alt="Coliseum - Basketball">
-            <img src="img/Coliseo_2.jpg" alt="Coliseum - Basketball">
+            <img src="img/coliseo_1.jpg" alt="Coliseum - Basketball">
+            <img src="img/coliseo_2.jpg" alt="Coliseum - Basketball">
             <img src="img/Futbol_1.jpg" alt="Coliseum - Basketball">
-            <img src="img/Gym.png" alt="Coliseum - Basketball">
+            <img src="img/Gym.png" alt="Coliseum - Gymnasium">
             <img src="img/Basket_1.jpg" alt="Coliseum - Basketball">
           </div>
         `
@@ -80,7 +80,7 @@
         tag: "arte", 
         place: "Arts Building + Italian Pizzeria", 
         info: `
-          In the Arts Building you can enjoy exhibitions, music and theater classes. Nearby is an authentic Italian pizzeria with a cultural atmosphere and delicious food. You can also find the university museum here.
+          The Arts Building at UdeA is a cultural gem on campus. From thought-provoking visual art exhibits to live music, poetry readings, and dramatic performances, it’s the beating heart of creative expression. Adjacent to the building is a cozy Italian pizzeria where students gather for pizza, coffee, and conversation, often accompanied by live performances or spontaneous jam sessions. The museum nearby holds rotating collections, providing constant inspiration and reflection. If you love being surrounded by creativity and artistic energy, this is your place.
           <div class="image-gallery">
             <img src="img/Museo_1.jpg" alt="Arts Building - Facade">
             <img src="img/Museo_2.jpg" alt="Arts Building - Exhibition">
@@ -95,7 +95,7 @@
         tag: "juegos", 
         place: "University Game Room", 
         info: `
-          The game room is a social gamer space: PS4, Xbox with Kinect, Wii, board games, Rubik's cubes, and more. You can also borrow sports equipment with your student ID, like balls (soccer, basketball, volleyball), frisbees, and more! Open from 8 a.m. to 5 p.m.
+          The Game Room is a vibrant social space where students unwind, connect, and play. You’ll find modern consoles like PS4, Xbox Kinect, and Wii, along with classic board games, Rubik’s cubes, and card games. It’s not just for fun—it’s a stress-relief zone that encourages strategic thinking, collaboration, and relaxation. Plus, students can borrow sports gear like balls and frisbees with their ID. Open all day from 8AM to 5PM, it’s perfect for a quick match or an afternoon tournament with friends.
           <div class="image-gallery">
             <img src="img/Ludoteca_1.jpg" alt="Game Room - Consoles">
             <img src="img/Ludoteca_2.jpg" alt="Game Room - Board games">
@@ -108,7 +108,8 @@
         tag: "tranquilidad", 
         place: "Gardens and Green Areas", 
         info: `
-          The campus gardens are perfect for reading, chatting, or relaxing. A green lung in the city.
+          UdeA’s green areas are peaceful oases in the middle of urban Medellín. With trees, benches, and walking paths, they offer a place to unwind, read, or simply enjoy the natural beauty. The gardens invite reflection, conversation, or even naps under the shade of a ceiba. Many students find inspiration or mental clarity here before exams. With birds chirping and wind rustling through the leaves, it’s easy to forget you're in a city.<br><br>
+          As you wander through campus, you’ll also discover the university’s open-air museum: a collection of beautiful artworks thoughtfully placed throughout the gardens, common areas, sports courts, parks, and dining spaces. These sculptures and installations transform every stroll into an inspiring journey, blending art and nature in perfect harmony.
           <div class="image-gallery">
             <img src="img/Abierto_1.jpg" alt="Garden - Trees and benches">
             <img src="img/Abierto_4.jpg" alt="Garden - Pathways">
@@ -123,7 +124,7 @@
         tag: "biblioteca", 
         place: "Central Library (Biblioteca Carlos Gaviria Díaz)", 
         info: `
-          The Central Library of UdeA is a true temple of knowledge. Here you will find not only thousands of books and manuscripts, but also inspiring spaces for study, research, and creativity. Enjoy quiet reading rooms, multimedia collections, movie screenings, reading clubs, and access to computers and digital resources. The library is a meeting point for those who seek to learn, dream, and share their passion for culture and history in a welcoming and modern environment.
+          The Central Library is a sanctuary for knowledge seekers. With an extensive collection of books, journals, manuscripts, and digital media, it’s a cornerstone of academic life at UdeA. But it’s more than a library: it’s a meeting place for readers, researchers, cinephiles, and dreamers. It offers quiet zones for focused study, multimedia stations for research or entertainment, and communal areas for collaboration. Events like film screenings, book clubs, and talks happen regularly. You’ll feel a deep sense of inspiration and intellectual curiosity in every corner.
           <div class="image-gallery">
             <img src="img/Biblioteca_1.jpg" alt="Library - Main hall">
             <img src="img/Biblioteca_2.jpg" alt="Library - Reading room">
@@ -179,7 +180,6 @@
       document.body.classList.add("results-active");
       document.getElementById("question-card").classList.add("hidden");
       document.getElementById("result-card").classList.remove("hidden");
-
       let placeHTML = '';
       if (selections.length === 0) {
         placeHTML = `
@@ -194,7 +194,6 @@
           `;
         });
       }
-
       document.getElementById("place-info").innerHTML = placeHTML + `<p>Thank you for playing. This project was created to share the love for the University of Antioquia campus.</p>`;
     }
 
@@ -205,12 +204,47 @@
       document.getElementById("question-card").classList.add("hidden");
       document.getElementById("result-card").classList.add("hidden");
       document.getElementById("start-card").classList.remove("hidden");
+      document.getElementById("question").textContent = questions[0].text;
     }
 
     function copyLink() {
-      navigator.clipboard.writeText("https://udea-nine.vercel.app/");
+      navigator.clipboard.writeText("https://udea-nine.vercel.app/")
+        .then(() => {
+          showCopyAlert();
+        })
+        .catch(err => {
+          console.error('Error copying link: ', err);
+        });
       alert("Link copied to clipboard!");
     }
+  </script>
+  <script>
+    // Imagen zoom overlay para .image-gallery img
+    document.addEventListener('DOMContentLoaded', function () {
+      document.body.addEventListener('click', function (e) {
+        // Solo imágenes dentro de .image-gallery
+        if (e.target.matches('.image-gallery img')) {
+          // Crea overlay
+          const overlay = document.createElement('div');
+          overlay.className = 'image-zoom-overlay';
+          overlay.innerHTML = `<img src="${e.target.src}" alt="${e.target.alt}">`;
+          document.body.appendChild(overlay);
+
+          // Cerrar al hacer click en el overlay
+          overlay.addEventListener('click', function () {
+            overlay.remove();
+          });
+
+          // Cerrar con ESC
+          document.addEventListener('keydown', function escListener(ev) {
+            if (ev.key === "Escape") {
+              overlay.remove();
+              document.removeEventListener('keydown', escListener);
+            }
+          });
+        }
+      });
+    });
   </script>
 </body>
 </html>
