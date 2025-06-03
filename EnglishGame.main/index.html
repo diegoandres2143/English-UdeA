@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Explora tu lugar en la UdeA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+  <div class="main-blur-bg music-btn-container">
+    <!-- Logo UdeA in the top right corner of the main box -->
+    <img id="logo-udea" src="img/Logo_udea.png" alt="UdeA Logo">
+
+    <h1>Discover Your Place at UdeA</h1>
+
+    <p>Welcome to the University of Antioquia exploration game! Answer a few questions and find out which spot on campus is your favorite.</p>
+
+    <div class="card" id="start-card">
+      <h2>Ready to discover your favorite place?</h2>
+      <button id="start-btn" type="button">Start Game</button>
+    </div>
+
+    <div class="card hidden" id="question-card">
+      <p id="question">Do you like sports?</p>
+      <button onclick="answer('deportes')">Yes</button>
+      <button onclick="nextQuestion()">No</button>
+    </div>
+
+    <div class="card hidden" id="result-card">
+      <h2>This could be your favorite place at UdeA!</h2>
+      <div id="place-info"></div>
+      <button onclick="restart()">🔁 Restart Game</button>
+      <button onclick="copyLink()">📤 Share Game</button>
+    </div>
+
+    <button id="play-music-btn" type="button">🔊 Play Music</button>
+  </div>
+
+  <audio id="bg-music" loop style="width:0;height:0;opacity:0;position:absolute;left:-9999px">
+    <source src="audio/Himno_udea.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Google Translate Widget -->
+  <div id="google_translate_element" style="position:fixed;top:10px;left:10px;z-index:2000;"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'es',
+        includedLanguages: 'en,es,fr,de,it,pt,zh-CN,ja,ru', // Puedes agregar más códigos de idioma si quieres
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <script>
+    const questions = [
+      { 
+        text: "Do you practice any sport or want to learn a new one?", 
+        tag: "deportes", 
+        place: "Coliseum", 
+        info: `
+          The UdeA Coliseum is ideal for practicing and watching sports. It has spaces for soccer, basketball, volleyball, taekwondo, athletics, tennis, ping-pong, swimming, diving, and many more!
+          <div class="image-gallery">
+            <img src="img/Tenis_1.jpg" alt="Coliseum - Main court">
+            <img src="img/Tenis_2.jpg" alt="Coliseum - Swimming pool">
+            <img src="img/Piscina_1.jpg" alt="Coliseum - Athletics track">
+            <img src="img/Piscina_2.jpg" alt="Coliseum - Volleyball">
+            <img src="img/coliseo_1.jpg" alt="Coliseum - Basketball">
+            <img src="img/coliseo_2.jpg" alt="Coliseum - Basketball">
+            <img src="img/Futbol_1.jpg" alt="Coliseum - Basketball">
+            <img src="img/Gym.png" alt="Coliseum - Basketball">
+            <img src="img/Basket_1.jpg" alt="Coliseum - Basketball">
+          </div>
+        `
+      },
+      { 
+        text: "Are you passionate about art and music?", 
+        tag: "arte", 
+        place: "Arts Building + Italian Pizzeria", 
+        info: `
+          In the Arts Building you can enjoy exhibitions, music and theater classes. Nearby is an authentic Italian pizzeria with a cultural atmosphere and delicious food. You can also find the university museum here.
+          <div class="image-gallery">
+            <img src="img/Museo_1.jpg" alt="Arts Building - Facade">
+            <img src="img/Museo_2.jpg" alt="Arts Building - Exhibition">
+            <img src="img/Museo_3.jpg" alt="Arts Building - Music room">
+            <img src="img/Museo_4.jpg" alt="Italian Pizzeria">
+            <img src="img/Pizza.jpg" alt="University Museum">
+          </div>
+        `
+      },
+      { 
+        text: "Do you enjoy spending time with friends playing video games or board games?", 
+        tag: "juegos", 
+        place: "University Game Room", 
+        info: `
+          The game room is a social gamer space: PS4, Xbox with Kinect, Wii, board games, Rubik's cubes, and more. You can also borrow sports equipment with your student ID, like balls (soccer, basketball, volleyball), frisbees, and more! Open from 8 a.m. to 5 p.m.
+          <div class="image-gallery">
+            <img src="img/Ludoteca_1.jpg" alt="Game Room - Consoles">
+            <img src="img/Ludoteca_2.jpg" alt="Game Room - Board games">
+            <img src="img/Ludoteca_3.jpg" alt="Game Room - Rubik's cubes">
+          </div>
+        `
+      },
+      { 
+        text: "Do you prefer quiet and relaxing spaces surrounded by nature?", 
+        tag: "tranquilidad", 
+        place: "Gardens and Green Areas", 
+        info: `
+          The campus gardens are perfect for reading, chatting, or relaxing. A green lung in the city.
+          <div class="image-gallery">
+            <img src="img/Abierto_1.jpg" alt="Garden - Trees and benches">
+            <img src="img/Abierto_4.jpg" alt="Garden - Pathways">
+            <img src="img/Abierto_5.jpg" alt="Garden - Students relaxing">
+            <img src="img/Abierto_6.jpg" alt="Garden - Flowers">
+            <img src="img/Abierto_7.jpg" alt="Garden - Green area">
+          </div>
+        `
+      },
+      { 
+        text: "Do you love books, ancient manuscripts, history, a peaceful place to study with computers available, movies, reading clubs, and the magic of knowledge?", 
+        tag: "biblioteca", 
+        place: "Central Library (Biblioteca Carlos Gaviria Díaz)", 
+        info: `
+          The Central Library of UdeA is a true temple of knowledge. Here you will find not only thousands of books and manuscripts, but also inspiring spaces for study, research, and creativity. Enjoy quiet reading rooms, multimedia collections, movie screenings, reading clubs, and access to computers and digital resources. The library is a meeting point for those who seek to learn, dream, and share their passion for culture and history in a welcoming and modern environment.
+          <div class="image-gallery">
+            <img src="img/Biblioteca_1.jpg" alt="Library - Main hall">
+            <img src="img/Biblioteca_2.jpg" alt="Library - Reading room">
+            <img src="img/Biblioteca_3.jpg" alt="Library - Bookshelves">
+            <img src="img/Biblioteca_4.jpg" alt="Library - Study area">
+            <img src="img/Biblioteca_5.jpg" alt="Library - Computers">
+          </div>
+        `
+      }
+    ];
+
+    let index = 0;
+    const selections = [];
+
+    // Music button: toggles play and pause
+    const playBtn = document.getElementById("play-music-btn");
+    const audio = document.getElementById('bg-music');
+    let musicPlaying = false;
+
+    playBtn.addEventListener("click", function () {
+      if (!musicPlaying) {
+        audio.volume = 1;
+        audio.play();
+        playBtn.textContent = "🔇 Stop Music";
+        musicPlaying = true;
+      } else {
+        audio.pause();
+        playBtn.textContent = "🔊 Play Music";
+        musicPlaying = false;
+      }
+    });
+
+    document.getElementById("start-btn").addEventListener("pointerup", function () {
+      document.getElementById("start-card").classList.add("hidden");
+      document.getElementById("question-card").classList.remove("hidden");
+    });
+
+    function nextQuestion() {
+      index++;
+      if (index < questions.length) {
+        document.getElementById("question").textContent = questions[index].text;
+      } else {
+        showResults();
+      }
+    }
+
+    function answer(tag) {
+      selections.push(questions[index]);
+      nextQuestion();
+    }
+
+    function showResults() {
+      document.body.classList.add("results-active");
+      document.getElementById("question-card").classList.add("hidden");
+      document.getElementById("result-card").classList.remove("hidden");
+
+      let placeHTML = '';
+      if (selections.length === 0) {
+        placeHTML = `
+          <p>You didn't select anything... but that can only mean one thing: You love all of UdeA! ❤️</p>
+          <img src="img/Ninguna.jpg" alt="Aerial view of UdeA">
+        `;
+      } else {
+        selections.forEach(sel => {
+          placeHTML += `
+            <h3>${sel.place}</h3>
+            <p>${sel.info}</p>
+          `;
+        });
+      }
+
+      document.getElementById("place-info").innerHTML = placeHTML + `<p>Thank you for playing. This project was created to share the love for the University of Antioquia campus.</p>`;
+    }
+
+    function restart() {
+      document.body.classList.remove("results-active");
+      index = 0;
+      selections.length = 0;
+      document.getElementById("question-card").classList.add("hidden");
+      document.getElementById("result-card").classList.add("hidden");
+      document.getElementById("start-card").classList.remove("hidden");
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText("https://TU-LINK-VERCEL.vercel.app");
+      alert("Link copied to clipboard!");
+    }
+  </script>
+</body>
+</html>

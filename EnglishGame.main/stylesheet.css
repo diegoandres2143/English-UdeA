@@ -1,0 +1,351 @@
+body {
+  background-color: #003d1f; /* Verde oscuro UdeA */
+  color: #003d1f;
+  margin: 0;
+  padding: 2vw;
+  background-image: url('img/Fondo_udea.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  /* NO agregues background-attachment: fixed; ni cambies background-size en JS */
+}
+h1, h2 {
+  color: #00562C;
+}
+h1 {
+  color: #00562C;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  margin-right: 260px; /* Igual o mayor al ancho máximo del logo en desktop */
+  word-break: break-word;
+}
+@media (max-width: 1400px) {
+  h1 {
+    margin-right: 18vw;
+  }
+}
+@media (max-width: 900px) {
+  h1 {
+    margin-right: 28vw;
+  }
+}
+@media (max-width: 600px) {
+  h1 {
+    margin-right: 38vw;
+  }
+}
+/* Ajusta el margen automático y el ancho para balancear los bordes laterales */
+.main-blur-bg {
+  background: rgba(255,255,255,0.55);
+  border-radius: 10px;
+  padding: 2vw 2vw 2vw 2vw;
+  margin: 3vw auto 3vw auto; /* Centrado horizontal y espacio arriba/abajo */
+  max-width: 1200px;         /* Reduce el máximo para dejar más espacio lateral */
+  min-width: 0;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+  backdrop-filter: blur(4px);
+  width: 92vw;               /* Antes: 90vw, así hay más espacio a los lados */
+}
+.card {
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 2vw;
+  margin: 2vw 0;
+  box-shadow: none;
+}
+button {
+  background-color: #00562C;
+  color: white;
+  border: none;
+  padding: 1.2rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0.7rem;
+  font-size: 1.2rem;
+}
+button:hover {
+  background-color: #004220;
+}
+.hidden {
+  display: none;
+}
+img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+/* Posiciona el botón dentro del cuadro principal, esquina inferior derecha */
+.music-btn-container {
+  position: relative;
+}
+#play-music-btn {
+  position: absolute;
+  right: 2vw;
+  bottom: 2vw;
+  z-index: 10;
+  font-size: 1.1rem;
+  padding: 0.7em 1.5em;
+}
+@media (max-width: 600px) {
+  #play-music-btn {
+    right: 1vw;
+    bottom: 1vw;
+    font-size: 1rem;
+    padding: 0.6em 1.2em;
+  }
+}
+/* Logo UdeA en la esquina superior derecha del cuadro principal, 2 veces más grande */
+#logo-udea {
+  position: absolute;
+  top: 0.5vw;
+  right: 1.5vw;
+  width: 200px;
+  max-width: 50vw;
+  height: auto;
+  z-index: 10;
+  background: none;
+  border-radius: 0;
+  margin: 0;
+  box-shadow: none;
+  pointer-events: none;
+  user-select: none;
+}
+@media (max-width: 900px) {
+  #logo-udea {
+    width: 200px;
+    max-width: 40vw;
+    top: 0vw;
+    right: 2vw;
+  }
+}
+@media (max-width: 600px) {
+  #logo-udea {
+    width: 110px;
+    max-width: 40vw;
+    top: 1vw;
+    right: 2vw;
+  }
+}
+/* Asegura que el contenido de las tarjetas no se sobreponga con el logo */
+.main-blur-bg.music-btn-container {
+  position: relative;
+  overflow: hidden;
+  padding-right: 260px; /* Igual al margin-right del h1 en desktop */
+  padding-bottom: 5vw;
+}
+@media (max-width: 1400px) {
+  .main-blur-bg.music-btn-container {
+    padding-right: 18vw;
+  }
+}
+@media (max-width: 900px) {
+  .main-blur-bg.music-btn-container {
+    padding-right: 28vw;
+    padding-bottom: 8vw;
+  }
+}
+@media (max-width: 600px) {
+  .main-blur-bg.music-btn-container {
+    padding-right: 38vw;
+    padding-bottom: 10vw;
+  }
+}
+
+/* Usa la misma fuente en todos los cuadros y textos */
+body,
+.main-blur-bg,
+.card,
+button,
+#place-info,
+#question,
+h1, h2, h3, p, label, input, textarea {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* --- Google Translate Widget Custom Styles --- */
+/* Ubica el botón de cambio de idioma en la esquina inferior derecha */
+#google_translate_element {
+  position: fixed !important;
+  right: 2vw;
+  bottom: 2vw;
+  left: auto !important;
+  top: auto !important;
+  z-index: 2001;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 1rem !important;
+  background: rgba(255,255,255,0.85);
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,93,44,0.08);
+  padding: 8px 16px 8px 12px;
+  border: 1.5px solid #00562C;
+  display: inline-block;
+}
+
+.goog-te-gadget {
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: #00562C !important;
+  font-size: 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.3em !important;
+  height: auto !important;
+  line-height: normal !important;
+}
+
+.goog-te-gadget-simple {
+  background-color: #E6F0EB !important;
+  border: 1.5px solid #00562C !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  color: #00562C !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,93,44,0.06);
+  vertical-align: middle !important;
+  display: flex !important;
+  align-items: center !important;
+  min-height: 32px !important;
+  margin-left: 0.2em !important;
+}
+
+.goog-te-gadget-simple:hover {
+  box-shadow: 0 4px 16px rgba(0,93,44,0.13);
+  background-color: #d2e9db !important;
+}
+
+.goog-te-gadget img {
+  vertical-align: middle !important;
+  margin-bottom: 0 !important;
+  margin-right: 0.3em !important;
+  height: 1em !important;
+  width: auto !important;
+  display: inline-block !important;
+}
+
+/* Oculta el logo de Google, la imagen circular con la G y la flecha, dejando solo el texto "Seleccionar idioma" */
+.goog-te-gadget img,
+.goog-te-gadget .goog-te-menu-value span[style*="background-image"],
+.goog-te-gadget .goog-te-menu-value span[style*="url"],
+.goog-te-gadget .goog-te-menu-value .goog-te-arrow {
+  display: none !important;
+}
+
+/* Opcional: ajusta el padding para que el texto quede bien alineado */
+.goog-te-gadget-simple {
+  padding-left: 0.5em !important;
+}
+
+.goog-te-menu-value span,
+.goog-te-menu-value {
+  color: #00562C !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 1rem !important;
+}
+
+.goog-te-menu-frame.skiptranslate {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 24px rgba(0,93,44,0.13) !important;
+  border: 2px solid #00562C !important;
+  top: 60px !important;
+  left: 10px !important;
+}
+
+.goog-te-menu2 {
+  font-family: Arial, Helvetica, sans-serif !important;
+  background: #E6F0EB !important;
+  color: #00562C !important;
+  border-radius: 10px !important;
+  border: 1.5px solid #00562C !important;
+}
+
+.goog-te-menu2-item div, .goog-te-menu2-item-selected div {
+  color: #00562C !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  padding: 6px 12px !important;
+}
+
+.goog-te-menu2-item div:hover, .goog-te-menu2-item-selected div {
+  background-color: #b6dbc7 !important;
+  color: #003d1f !important;
+}
+
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
+
+/* Aplica un marco verde oscuro a todas las imágenes, excepto el logo y el fondo */
+img:not(#logo-udea):not([src*="Fondo_udea"]) {
+  border: 4px solid #003d1f;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* Galería de imágenes */
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2em;
+  justify-content: center;
+  margin: 1.5em 0;
+}
+.image-gallery img {
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  border: 4px solid #003d1f;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: #fff;
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+.image-gallery img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 16px rgba(0,93,44,0.13);
+}
+
+@media (max-width: 1000px) {
+  .image-gallery img {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .image-gallery {
+    gap: 0.7em;
+  }
+}
+
+/* Fondo solo color verde cuando se muestran los resultados */
+body.results-active {
+  background-image: none !important;
+  background-color: #003d1f !important;
+}
+
+/* Estilos para el overlay de zoom de imagen */
+.image-zoom-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 30, 20, 0.85);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  animation: fadeIn 0.2s;
+}
+.image-zoom-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border: 6px solid #003d1f;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+  object-fit: contain;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
