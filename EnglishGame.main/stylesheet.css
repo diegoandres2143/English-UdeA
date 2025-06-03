@@ -37,8 +37,8 @@ h1 {
 }
 /* Ajusta el margen automático y el ancho para balancear los bordes laterales */
 .main-blur-bg {
-  background: rgba(255,255,255,0.55);
-  border-radius: 10px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 8px;
   padding: 2vw 2vw 2vw 2vw;
   margin: 3vw auto 3vw auto; /* Centrado horizontal y espacio arriba/abajo */
   max-width: 1200px;         /* Reduce el máximo para dejar más espacio lateral */
